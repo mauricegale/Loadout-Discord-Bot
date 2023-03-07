@@ -31,3 +31,13 @@ class Gun:
         """
 
         return connectToMySQL(db).query_db(query, data)
+
+    @staticmethod
+    def validate_info(data):
+        if data['gun_type'] == '':
+            flash('Must enter the type of gun', 'report')
+            return False
+
+        if data['gun_name'] == '':
+            flash('Must Enter the name of gun', 'report')
+            return False

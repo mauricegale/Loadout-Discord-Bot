@@ -9,7 +9,28 @@
 </head>
 
 <body>
-    <h1>Hello!</h1>
+    <h1>Add Loadout</h1>
+    {% with rep_messages = get_flashed_messages(category_filter=['report']) %}
+
+    {% if rep_messages %}
+
+    {% for rep_message in rep_messages %}
+
+    <p style="color: red;">{{rep_message}}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="/add_loadout" method="post">
+        <label for='creator'>Creator:</label>
+        <input type='text' name='creator'><br>
+
+        <label for='gun'>Gun:</label>
+        <select name="gun">
+            <option value="lachmen">Lachmen</option>
+
+        </select>
+
+    </form>
 </body>
 
 </html>

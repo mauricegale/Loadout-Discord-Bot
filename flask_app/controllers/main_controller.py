@@ -13,6 +13,12 @@ def home():
 @app.route("/add_loadout", methods=['POST'])
 def create_loadout():
 
+    if not Gun.validate_info(request.form):
+        return redirect('/')
+
+    if not Loadout.validate_info(request.form):
+        return redirect('/')
+
     gun_data = {
         'muzzle': request.form['muzzle'],
         'barrel': request.form['barrel'],
@@ -28,11 +34,11 @@ def create_loadout():
         'gun_name': request.form['gun_name'],
         'gun_type': request.form['gun_type']
     }
-    gun = Gun.add_loadout(gun_data)
+    gun = Gun.add_gun(gun_data)
     gun_id = gun['gun_id']
 
     loadout_data = {
-        'gun_id': request.form['gun_id'],
+        'gun_id': gun_id,
         'creator': request.form['creator'],
         'created_at': request.form['created_at'],
         'updated_at': request.form['updated_at'],
