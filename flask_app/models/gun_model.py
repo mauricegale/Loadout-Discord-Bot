@@ -41,3 +41,5 @@ class Gun:
         if data['gun_name'] == '':
             flash('Must Enter the name of gun', 'report')
             return False
+
+        return True
