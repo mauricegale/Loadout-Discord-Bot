@@ -14,11 +14,13 @@ class Loadout:
 
     @staticmethod
     def validate_info(data):
+        is_valid = True
+
         if data['creator'] == '':
             flash('Must enter creator or source of loadout', 'report')
-            return False
+            is_valid = False
 
-        return True
+        return is_valid
 
     @classmethod
     def add_loadout(cls, data):

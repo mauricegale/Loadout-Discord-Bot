@@ -35,13 +35,23 @@ class Gun:
 
     @staticmethod
     def validate_info(data):
-        print("data: ", data)
+        is_valid = True
+        nulls = 0
+
+        for attachment in data:
+            if data[attachment] == '':
+                nulls += 1
+
         if data['gun_type'] == '':
             flash('Must enter the type of gun', 'report')
-            return False
+            is_valid = False
 
         if data['gun_name'] == '':
-            flash('Must Enter the name of gun', 'report')
-            return False
+            flash('Must enter the name of gun', 'report')
+            is_valid = False
 
-        return True
+        if nulls < 4:
+            flash('Must enter at most 5 attachments', 'report')
+            is_valid = False
+
+        return is_valid
