@@ -2,23 +2,18 @@ from flask_app import app
 from flask import render_template, redirect, request, session, flash
 from flask_app.models.loadout_model import Loadout
 from flask_app.models.gun_model import Gun
-from flask_app.weapon_data.weapons import weapons
+from flask_app.weapon_data.weapons import weapons, ammo, muzzles, barrels, lasers, magazines, optics, rear_grips, stocks, underbarrels
 
 
 @app.route("/")
 def home():
-    return render_template("form.html", weapons=weapons)
+    return render_template("form.html", weapons=weapons, ammo=ammo, muzzles=muzzles,
+                           barrels=barrels, lasers=lasers, magazines=magazines, optics=optics,
+                           rear_grips=rear_grips, stocks=stocks, underbarrels=underbarrels)
 
 
 @app.route("/add_loadout", methods=['POST'])
 def create_loadout():
-
-    if not Gun.validate_info(request.form):
-        return redirect('/')
-
-    if not Loadout.validate_info(request.form):
-        return redirect('/')
-
     gun_data = {
         'muzzle': request.form['muzzle'],
         'barrel': request.form['barrel'],
@@ -28,20 +23,22 @@ def create_loadout():
         'laser': request.form['laser'],
         'ammo': request.form['ammo'],
         'magazine': request.form['magazine'],
-        'created_at': request.form['created_at'],
-        'updated_at': request.form['updated_at'],
         'stock': request.form['stock'],
         'gun_name': request.form['gun_name'],
         'gun_type': request.form['gun_type']
     }
+
+    if not Gun.validate_info(gun_data):
+        return redirect('/')
+
+    if not Loadout.validate_info(request.form):
+        return redirect('/')
+
     gun = Gun.add_gun(gun_data)
-    gun_id = gun['gun_id']
 
     loadout_data = {
-        'gun_id': gun_id,
-        'creator': request.form['creator'],
-        'created_at': request.form['created_at'],
-        'updated_at': request.form['updated_at'],
+        'gun_id': gun,
+        'creator': request.form['creator']
     }
 
     Loadout.add_loadout(loadout_data)

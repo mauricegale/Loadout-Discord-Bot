@@ -24,77 +24,98 @@
         <label for='creator'>Creator:</label>
         <input type='text' name='creator'><br>
 
-        <!-- <label for='gun'>Gun:</label>
-        <input list="brow"> -->
-        <!-- <datalist name="gun" id="brow">
-            <option value="lachmann-556">lachmann-556</option>
-            <option value="taq-56">Taq-56</option>
-            <option value="m4">M4</option>
-            <option value="kastov-762">kastov-762</option>
-            <option value="stb-556">stb-556</option>
-            <option value="m16">m16</option>
-            <option value="kastov-74u">kastov-74u</option>
-            <option value="kastov-545">kastov-545</option>
-            <option value="m13b">m13b</option>
-            <option value="chimera">chimera</option>
-            <option value="iso hemlock">iso hemlock</option>
-            <p>Battle Rifles</p>
-            <option value="lachmann-762">lachmann-762</option>
-            <option value="so-14">so-14</option>
-            <option value="taq-v">taq-v</option>
-            <option value="ftac recon">ftac recon</option>
-            <p>SMGs</p>
-            <option value="vel-46">vel-46</option>
-            <option value="mx9(aug)">mx9(aug)</option>
-            <option value="lachmann-sub">lachmann sub (mp5)</option>
-            <option value="vaznev-9k">vaznev-9k</option>
-            <option value="fss-hurricane">fss hurricane</option>
-            <option value="minibak">minibak</option>
-            <option value="pdsw-528">pdsw-528</option>
-            <option value="fennec 45">fennec 45</option>
-            <option value="bas-p">bas-p</option>
-            <p>LMGs</p>
-            <option value="sakin mg38">sakin mg38</option>
-            <option value="hcr-56">hcr-56</option>
-            <option value="556 icarus">556 icarus</option>
-            <option value="raal mg">raal mg</option>
-            <option value="rpk">rpk</option>
-            <option value="rapp h">rapp h</option>
-            <p>Shotguns</p>
-            <option value="lockwood-300">lockwood-300</option>
-            <option value="expedite 12">expedite 12</option>
-            <option value="bryson 800">bryson 800</option>
-            <option value="bryson 890">bryson 890</option>
-            <option value="kv broadside">kv broadside</option>
-            <p>Marksmen Rifles</p>
-            <option value="ebr-14">ebr-14</option>
-            <option value="sp-r-208">sp-r-208</option>
-            <option value="lockwoodmk2">lockwoodmk2</option>
-            <option value="lm-s">lm-s</option>
-            <option value="sa-b-50">sa-b-50</option>
-            <option value="taq-m">taq-m</option>
-            <option value="crossbow">crossbow</option>
-            <p>Sniper Rifles</p>
-            <option value="mcpr-300">mcpr-300</option>
-            <option value="signal-50">signal-50</option>
-            <option value="la-b-330">la-b-330</option>
-            <option value="sp-x-80">sp-x-80</option>
-            <option value="victus xmr">victus xmr</option>
-            <p>Pistols</p>
-            <option value="p890">p890</option>
-            <option value=".50g gx">.50g gx</option>
-            <option value="x12">x12</option>
-            <option value="basilisk">basilisk</option>
-            <option value="x13 auto">x13 auto</option>
-        </datalist> -->
+        <label for='gun_type'>Gun Type:</label>
+        <select name="gun_type">
+            <option value="AR">AR</option>
+            <option value="SMG">SMG</option>
+            <option value="LMG">LMG</option>
+            <option value="BR">BR</option>
+            <option value="MR">MR</option>
+            <option value="SR">SR</option>
+            <option value="Pistol">Pistol</option>
+            <option value="Shotgun">Shotgun</option>
+        </select>
 
-        <label for='gun'>Gun:</label>
-        <input list="brow">
-        <datalist name="gun" id="brow">
+        <label for='gun_name'>Gun:</label>
+        <input name="gun_name" list="gun_brow">
+        <datalist id="gun_brow">
             {% for one_weapon in weapons %}
             <option value="{{one_weapon}}">{{one_weapon}}</option>
             {% endfor %}
         </datalist>
+
+        <label for='ammo'>Ammo:</label>
+        <input name="ammo" list="ammo_brow">
+        <datalist id="ammo_brow">
+            {% for one_ammo in ammo %}
+            <option value="{{one_ammo}}">{{one_ammo}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='stock'>Stock:</label>
+        <input name="stock" list="stock_brow">
+        <datalist id="stock_brow">
+            {% for one_stock in stocks %}
+            <option value="{{one_stock}}">{{one_stock}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='barrel'>Barrel:</label>
+        <input name="barrel" list="barrel_brow">
+        <datalist id="barrel_brow">
+            {% for one_barrel in barrels %}
+            <option value="{{one_barrel}}">{{one_barrel}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='laser'>laser:</label>
+        <input name="laser" list="laser_brow">
+        <datalist id="laser_brow">
+            {% for one_laser in lasers %}
+            <option value="{{one_laser}}">{{one_laser}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='magazine'>Magazine:</label>
+        <input name="magazine" list="mag_brow">
+        <datalist id="mag_brow">
+            {% for one_magazine in magazines %}
+            <option value="{{one_magazine}}">{{one_magazine}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='optic'>optic:</label>
+        <input name="optic" list="optic_brow">
+        <datalist id="optic_brow">
+            {% for one_optic in optics %}
+            <option value="{{one_optic}}">{{one_optic}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='rear_grip'>Rear Grip:</label>
+        <input name="rear_grip" list="rear_grip_brow">
+        <datalist id="rear_grip_brow">
+            {% for one_rear_grip in rear_grips %}
+            <option value="{{one_rear_grip}}">{{one_rear_grip}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='muzzle'>Muzzle:</label>
+        <input name="muzzle" list="muzzle_brow">
+        <datalist id="muzzle_brow">
+            {% for one_muzzle in muzzles %}
+            <option value="{{one_muzzle}}">{{one_muzzle}}</option>
+            {% endfor %}
+        </datalist>
+
+        <label for='underbarrel'>Underbarrel:</label>
+        <input name="underbarrel" list="underbarrel_brow">
+        <datalist id="underbarrel_brow">
+            {% for one_underbarrel in underbarrels %}
+            <option value="{{one_underbarrel}}">{{one_underbarrel}}</option>
+            {% endfor %}
+        </datalist>
+        <input type="submit" value="Add">
 
     </form>
 </body>

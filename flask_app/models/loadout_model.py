@@ -24,7 +24,7 @@ class Loadout:
     def add_loadout(cls, data):
         query = """
             INSERT INTO loadouts (creator, gun_id, created_at, updated_at)
-            VALUES (%(creator)s, %(gun_id)s, %(release_date)s, now(), now());
+            VALUES (%(creator)s, %(gun_id)s, now(), now());
         """
 
         return connectToMySQL(db).query_db(query, data)

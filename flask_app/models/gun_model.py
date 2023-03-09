@@ -6,8 +6,9 @@ db = 'gun_loadout_schema'
 
 class Gun:
     def __init__(self, data):
-        self.gun_id = data['gun_id']
+
         self.muzzle = data['muzzle']
+        self.gun_id = data['gun_id']
         self.underbarrel = data['underbarrel']
         self.rear_grip = data['rear_grip']
         self.optic = data['optic']
@@ -24,16 +25,17 @@ class Gun:
     @classmethod
     def add_gun(cls, data):
         query = """
-            INSERT INTO guns (muzzle, underbarrel, rear_grip, optic
-            laser, gun_name, gun_type, magazine, stock, ammo, barrel, created_at,updated_at)
-            VALUES (%(loadout_id)s, %(muzzle)s, %(underbarrel)s, %(rear_grip)s, %(optic)s
-            %(laser)s, %(gun_name)s %(gun_type)s, %(magazine)s, %(stock)s, %(ammo)s, %(barrel)s, now(), now());
+            INSERT INTO guns (muzzle, underbarrel, rear_grip, optic,
+            laser, gun_name, gun_type, magazine, stock, ammo, barrel, created_at, updated_at)
+            VALUES (%(muzzle)s, %(underbarrel)s, %(rear_grip)s, %(optic)s,
+            %(laser)s, %(gun_name)s, %(gun_type)s, %(magazine)s, %(stock)s, %(ammo)s, %(barrel)s, now(), now());
         """
 
         return connectToMySQL(db).query_db(query, data)
 
     @staticmethod
     def validate_info(data):
+        print("data: ", data)
         if data['gun_type'] == '':
             flash('Must enter the type of gun', 'report')
             return False
