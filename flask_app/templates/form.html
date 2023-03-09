@@ -24,9 +24,9 @@
         <label for='creator'>Creator:</label>
         <input type='text' name='creator'><br>
 
-        <label for='gun'>Gun:</label>
-        <input list="brow">
-        <datalist name="gun" id="brow">
+        <!-- <label for='gun'>Gun:</label>
+        <input list="brow"> -->
+        <!-- <datalist name="gun" id="brow">
             <option value="lachmann-556">lachmann-556</option>
             <option value="taq-56">Taq-56</option>
             <option value="m4">M4</option>
@@ -81,6 +81,19 @@
             <option value="sp-x-80">sp-x-80</option>
             <option value="victus xmr">victus xmr</option>
             <p>Pistols</p>
+            <option value="p890">p890</option>
+            <option value=".50g gx">.50g gx</option>
+            <option value="x12">x12</option>
+            <option value="basilisk">basilisk</option>
+            <option value="x13 auto">x13 auto</option>
+        </datalist> -->
+
+        <label for='gun'>Gun:</label>
+        <input list="brow">
+        <datalist name="gun" id="brow">
+            {% for one_weapon in weapons %}
+            <option value="{{one_weapon}}">{{one_weapon}}</option>
+            {% endfor %}
         </datalist>
 
     </form>
