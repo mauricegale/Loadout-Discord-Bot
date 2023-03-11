@@ -29,6 +29,12 @@ def handle_response(message) -> str:
     if "!type" in p_message and ' ' in p_message:
         return get_loadout_with_gun_type(p_message[p_message.index(" ") + 1:])
 
+    if "!creator " in p_message:
+        return get_loadout_with_gun_type(p_message[p_message.index(" ") + 1:])
+
+    if "!mode " in p_message:
+        return get_loadout_by_game_mode(p_message[p_message.index(" ") + 1:])
+
     return
 
 
@@ -49,7 +55,7 @@ def convert_all_guns_to_message(loadouts):
 
     for loadout in loadouts:
         for info in loadout:
-            if loadout[info] != "":
+            if loadout[info] != "" and loadout_info != "None":
                 loadout_info += f"{loadout[info]}\n"
 
     return loadout_info
@@ -57,7 +63,7 @@ def convert_all_guns_to_message(loadouts):
 
 def all_loadouts():
     query = f"""
-        SELECT creator, loadouts.game_mode, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns
+        SELECT creator, gun_name, loadouts.game_mode, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns
         JOIN loadouts
         ON loadouts.gun_id = guns.gun_id;
     """
@@ -89,7 +95,7 @@ def all_guns():
 
 def get_loadout_by_gun_name(name):
     query = f"""
-            SELECT creator, loadouts.game_mode, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
+            SELECT gun_name, creator, loadouts.game_mode, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
             JOIN loadouts
             ON loadouts.gun_id = guns.gun_id
             WHERE gun_name LIKE "%{name}%";
@@ -113,6 +119,46 @@ def get_loadout_with_gun_type(gun_type):
         JOIN loadouts
         ON loadouts.gun_id = guns.gun_id
         WHERE gun_type = "{gun_type}";
+    """
+
+    results = connectToMySQL(db).query_db(query)
+    loadouts = []
+
+    for one_loadout in results:
+        loadouts.append(one_loadout)
+
+    if not loadouts:
+        return "No there are currently no loadouts associated with this type of gun"
+
+    return convert_to_message(loadouts)
+
+
+def get_loadout_by_creator(creator):
+    query = f"""
+        SELECT creator, gun_name, game_mode, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
+        JOIN loadouts
+        ON loadouts.gun_id = guns.gun_id
+        WHERE creator LIKE "%{creator}%";
+    """
+
+    results = connectToMySQL(db).query_db(query)
+    loadouts = []
+
+    for one_loadout in results:
+        loadouts.append(one_loadout)
+
+    if not loadouts:
+        return "No there are currently no loadouts associated with this type of gun"
+
+    return convert_to_message(loadouts)
+
+
+def get_loadout_by_game_mode(mode):
+    query = f"""
+        SELECT creator, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
+        JOIN loadouts
+        ON loadouts.gun_id = guns.gun_id
+        WHERE loadouts.game_mode = "{mode}" OR loadouts.game_mode IS NULL;
     """
 
     results = connectToMySQL(db).query_db(query)
