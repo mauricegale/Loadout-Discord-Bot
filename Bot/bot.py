@@ -30,6 +30,9 @@ def run_discord_bot():
         user_message = str(message.content)
         channel = str(message.channel)
 
+        if user_message[0] == "!" and username == "jaybutler328":
+            return "Playstation users arent allowed to use this bot"
+
         if user_message[0] == '?':
             user_message = user_message[1:]
             await send_message(message, user_message, is_private=True)

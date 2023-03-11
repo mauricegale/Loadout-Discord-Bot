@@ -11,10 +11,15 @@ class Loadout:
         self.gun_id = data['gun_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.game_mode = data['game_mode']
 
     @staticmethod
     def validate_info(data):
         is_valid = True
+
+        if data['game_mode'] == '':
+            flash('Must enter game mode loadout is meant for', 'report')
+            is_valid = False
 
         if data['creator'] == '':
             flash('Must enter creator or source of loadout', 'report')
@@ -25,8 +30,8 @@ class Loadout:
     @classmethod
     def add_loadout(cls, data):
         query = """
-            INSERT INTO loadouts (creator, gun_id, created_at, updated_at)
-            VALUES (%(creator)s, %(gun_id)s, now(), now());
+            INSERT INTO loadouts (game_mode, creator, gun_id, created_at, updated_at)
+            VALUES (%(game_mode)s, %(creator)s, %(gun_id)s, now(), now());
         """
 
         return connectToMySQL(db).query_db(query, data)

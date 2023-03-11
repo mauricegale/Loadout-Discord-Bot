@@ -38,7 +38,8 @@ def create_loadout():
 
     loadout_data = {
         'gun_id': gun,
-        'creator': request.form['creator']
+        'creator': request.form['creator'],
+        'game_mode': request.form['game_mode']
     }
 
     Loadout.add_loadout(loadout_data)

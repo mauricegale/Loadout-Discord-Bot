@@ -11,7 +11,13 @@ def handle_response(message) -> str:
     if p_message == "!help":
         return "`This is the help message`"
 
-    if "!all loadouts" in p_message:
+    if "trash" in p_message and "golden" in p_message:
+        return "Do NOT talk about my creator in that manner. You will be BANNED!"
+
+    if "playstation" in p_message:
+        return "Playstation is trash"
+
+    if "!all loadout" in p_message:
         return all_loadouts()
 
     if "!all" in p_message:
@@ -22,6 +28,8 @@ def handle_response(message) -> str:
 
     if "!type" in p_message and ' ' in p_message:
         return get_loadout_with_gun_type(p_message[p_message.index(" ") + 1:])
+
+    return
 
 
 def convert_to_message(loadouts):
@@ -49,7 +57,7 @@ def convert_all_guns_to_message(loadouts):
 
 def all_loadouts():
     query = f"""
-        SELECT creator, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns
+        SELECT creator, loadouts.game_mode, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns
         JOIN loadouts
         ON loadouts.gun_id = guns.gun_id;
     """
@@ -81,7 +89,7 @@ def all_guns():
 
 def get_loadout_by_gun_name(name):
     query = f"""
-            SELECT creator, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
+            SELECT creator, loadouts.game_mode, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
             JOIN loadouts
             ON loadouts.gun_id = guns.gun_id
             WHERE gun_name LIKE "%{name}%";
@@ -101,7 +109,7 @@ def get_loadout_by_gun_name(name):
 
 def get_loadout_with_gun_type(gun_type):
     query = f"""
-        SELECT creator, gun_name, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
+        SELECT creator, gun_name, game_mode, barrel, magazine, stock, rear_grip, underbarrel, muzzle, ammo, optic, laser FROM guns 
         JOIN loadouts
         ON loadouts.gun_id = guns.gun_id
         WHERE gun_type = "{gun_type}";
