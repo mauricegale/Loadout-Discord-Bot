@@ -18,11 +18,11 @@ class Loadout:
         is_valid = True
 
         if data['game_mode'] == '':
-            flash('Must enter game mode loadout is meant for', 'report')
+            flash('Must enter game mode loadout is meant for', 'type')
             is_valid = False
 
         if data['creator'] == '':
-            flash('Must enter creator or source of loadout', 'report')
+            flash('Must enter creator or source of loadout', 'creator')
             is_valid = False
 
         return is_valid

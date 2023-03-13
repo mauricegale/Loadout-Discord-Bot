@@ -6,127 +6,162 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loadout Form</title>
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 
 <body>
-    <h1>Add Loadout</h1>
-    {% with rep_messages = get_flashed_messages(category_filter=['report']) %}
+    <div class="main">
+        <h1>Add Loadout</h1>
 
-    {% if rep_messages %}
 
-    {% for rep_message in rep_messages %}
+        <form action="/add_loadout" method="post">
+            <div class="grid">
+                <label for='creator'>Creator:</label>
+                <input value="{{form_progress.creator}}" type='text' name='creator'><br>
 
-    <p style="color: red;">{{rep_message}}</p>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    <form action="/add_loadout" method="post">
-        <label for='creator'>Creator:</label>
-        <input value="{{form_progress.creator}}" type='text' name='creator'><br>
+                {% with rep_messages = get_flashed_messages(category_filter=['creator']) %}
+                {% if rep_messages %}
+                {% for rep_message in rep_messages %}
+                <p style="color: red;">{{rep_message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
 
-        <label for='gun_type'>Gun Type:</label>
-        <select name="gun_type">\
-            <option value="{{form_progress.gun_type}}">{{form_progress.gun_type}}</option>
-            <option value="AR">AR</option>
-            <option value="SMG">SMG</option>
-            <option value="LMG">LMG</option>
-            <option value="BR">BR</option>
-            <option value="MR">MR</option>
-            <option value="SR">SR</option>
-            <option value="Pistol">Pistol</option>
-            <option value="Shotgun">Shotgun</option>
-        </select>
+            <div class="flex">
+                <label for='gun_type'>Gun Type:</label>
+                <select name="gun_type">\
+                    <option value="{{form_progress.gun_type}}">{{form_progress.gun_type}}</option>
+                    <option value="AR">AR</option>
+                    <option value="SMG">SMG</option>
+                    <option value="LMG">LMG</option>
+                    <option value="BR">BR</option>
+                    <option value="MR">MR</option>
+                    <option value="SR">SR</option>
+                    <option value="Pistol">Pistol</option>
+                    <option value="Shotgun">Shotgun</option>
+                </select>
 
-        <label for='game_mode'>Made For:</label>
-        <select name="game_mode">
-            <option value="{{form_progress.game_mode}}">{{form_progress.game_mode}}</option>
-            <option value="multiplayer">Multiplayer</option>
-            <option value="DMZ">DMZ</option>
-            <option value="warzone">Warzone</option>
-        </select>
+                <label for='game_mode'>Made For:</label>
+                <select name="game_mode">
+                    <option value="{{form_progress.game_mode}}">{{form_progress.game_mode}}</option>
+                    <option value="multiplayer">Multiplayer</option>
+                    <option value="DMZ">DMZ</option>
+                    <option value="warzone">Warzone</option>
+                </select>
+                {% with rep_messages = get_flashed_messages(category_filter=['type']) %}
+                {% if rep_messages %}
+                {% for rep_message in rep_messages %}
+                <p style="color: red;">{{rep_message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
 
-        <label for='gun_name'>Gun:</label>
-        <input value="{{form_progress.gun_name}}" name="gun_name" list="gun_brow">
-        <datalist id="gun_brow">
-            {% for one_weapon in weapons %}
-            <option value="{{one_weapon}}">{{one_weapon}}</option>
-            {% endfor %}
-        </datalist>
+            <div class="grid">
+                <label for='gun_name'>Gun:</label>
+                <input value="{{form_progress.gun_name}}" name="gun_name" list="gun_brow">
+                <datalist id="gun_brow">
+                    {% for one_weapon in weapons %}
+                    <option value="{{one_weapon}}">{{one_weapon}}</option>
+                    {% endfor %}
+                </datalist><br>
+                {% with rep_messages = get_flashed_messages(category_filter=['name_of_gun']) %}
+                {% if rep_messages %}
+                {% for rep_message in rep_messages %}
+                <p style="color: red;">{{rep_message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
 
-        <label for='ammo'>Ammo:</label>
-        <input value="{{form_progress.ammo}}" name="ammo" list="ammo_brow">
-        <datalist id="ammo_brow">
-            {% for one_ammo in ammo %}
-            <option value="{{one_ammo}}">{{one_ammo}}</option>
-            {% endfor %}
-        </datalist>
+                <div class="inline-block">
+                    <label for='ammo'>Ammo:</label>
+                    <input value="{{form_progress.ammo}}" name="ammo" list="ammo_brow">
+                    <datalist id="ammo_brow">
+                        {% for one_ammo in ammo %}
+                        <option value="{{one_ammo}}">{{one_ammo}}</option>
+                        {% endfor %}
+                    </datalist>
 
-        <label for='stock'>Stock:</label>
-        <input value="{{form_progress.stock}}" name="stock" list="stock_brow">
-        <datalist id="stock_brow">
-            {% for one_stock in stocks %}
-            <option value="{{one_stock}}">{{one_stock}}</option>
-            {% endfor %}
-        </datalist>
+                    <label for='stock'>Stock:</label>
+                    <input value="{{form_progress.stock}}" name="stock" list="stock_brow">
+                    <datalist id="stock_brow">
+                        {% for one_stock in stocks %}
+                        <option value="{{one_stock}}">{{one_stock}}</option>
+                        {% endfor %}
+                    </datalist>
 
-        <label for='barrel'>Barrel:</label>
-        <input value="{{form_progress.barrel}}" name="barrel" list="barrel_brow">
-        <datalist id="barrel_brow">
-            {% for one_barrel in barrels %}
-            <option value="{{one_barrel}}">{{one_barrel}}</option>
-            {% endfor %}
-        </datalist>
+                    <label for='barrel'>Barrel:</label>
+                    <input value="{{form_progress.barrel}}" name="barrel" list="barrel_brow">
+                    <datalist id="barrel_brow">
+                        {% for one_barrel in barrels %}
+                        <option value="{{one_barrel}}">{{one_barrel}}</option>
+                        {% endfor %}
+                    </datalist>
 
-        <label for='laser'>laser:</label>
-        <input value="{{form_progress.laser}}" name="laser" list="laser_brow">
-        <datalist id="laser_brow">
-            {% for one_laser in lasers %}
-            <option value="{{one_laser}}">{{one_laser}}</option>
-            {% endfor %}
-        </datalist>
+                    <label for='laser'>laser:</label>
+                    <input value="{{form_progress.laser}}" name="laser" list="laser_brow">
+                    <datalist id="laser_brow">
+                        {% for one_laser in lasers %}
+                        <option value="{{one_laser}}">{{one_laser}}</option>
+                        {% endfor %}
+                    </datalist>
 
-        <label for='magazine'>Magazine:</label>
-        <input value="{{form_progress.magazine}}" name="magazine" list="mag_brow">
-        <datalist id="mag_brow">
-            {% for one_magazine in magazines %}
-            <option value="{{one_magazine}}">{{one_magazine}}</option>
-            {% endfor %}
-        </datalist>
+                    <label for='magazine'>Magazine:</label>
+                    <input value="{{form_progress.magazine}}" name="magazine" list="mag_brow">
+                    <datalist id="mag_brow">
+                        {% for one_magazine in magazines %}
+                        <option value="{{one_magazine}}">{{one_magazine}}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
 
-        <label for='optic'>optic:</label>
-        <input value="{{form_progress.optic}}" name="optic" list="optic_brow">
-        <datalist id="optic_brow">
-            {% for one_optic in optics %}
-            <option value="{{one_optic}}">{{one_optic}}</option>
-            {% endfor %}
-        </datalist>
+                <div class="flex">
+                    <label for='optic'>optic:</label>
+                    <input value="{{form_progress.optic}}" name="optic" list="optic_brow">
+                    <datalist id="optic_brow">
+                        {% for one_optic in optics %}
+                        <option value="{{one_optic}}">{{one_optic}}</option>
+                        {% endfor %}
+                    </datalist>
 
-        <label for='rear_grip'>Rear Grip:</label>
-        <input value="{{form_progress.rear_grip}}" name="rear_grip" list="rear_grip_brow">
-        <datalist id="rear_grip_brow">
-            {% for one_rear_grip in rear_grips %}
-            <option value="{{one_rear_grip}}">{{one_rear_grip}}</option>
-            {% endfor %}
-        </datalist>
+                    <label for='rear_grip'>Rear Grip:</label>
+                    <input value="{{form_progress.rear_grip}}" name="rear_grip" list="rear_grip_brow">
+                    <datalist id="rear_grip_brow">
+                        {% for one_rear_grip in rear_grips %}
+                        <option value="{{one_rear_grip}}">{{one_rear_grip}}</option>
+                        {% endfor %}
+                    </datalist>
 
-        <label for='muzzle'>Muzzle:</label>
-        <input value="{{form_progress.muzzle}}" name="muzzle" list="muzzle_brow">
-        <datalist id="muzzle_brow">
-            {% for one_muzzle in muzzles %}
-            <option value="{{one_muzzle}}">{{one_muzzle}}</option>
-            {% endfor %}
-        </datalist>
+                    <label for='muzzle'>Muzzle:</label>
+                    <input value="{{form_progress.muzzle}}" name="muzzle" list="muzzle_brow">
+                    <datalist id="muzzle_brow">
+                        {% for one_muzzle in muzzles %}
+                        <option value="{{one_muzzle}}">{{one_muzzle}}</option>
+                        {% endfor %}
+                    </datalist>
 
-        <label for='underbarrel'>Underbarrel:</label>
-        <input value="{{form_progress.underbarrel}}" name="underbarrel" list="underbarrel_brow">
-        <datalist id="underbarrel_brow">
-            {% for one_underbarrel in underbarrels %}
-            <option value="{{one_underbarrel}}">{{one_underbarrel}}</option>
-            {% endfor %}
-        </datalist>
-        <input type="submit" value="Add">
+                    <label for='underbarrel'>Underbarrel:</label>
+                    <input value="{{form_progress.underbarrel}}" name="underbarrel" list="underbarrel_brow">
+                    <datalist id="underbarrel_brow">
+                        {% for one_underbarrel in underbarrels %}
+                        <option value="{{one_underbarrel}}">{{one_underbarrel}}</option>
+                        {% endfor %}
+                    </datalist><br>
 
-    </form>
+                </div>
+                {% with rep_messages = get_flashed_messages(category_filter=['attachments']) %}
+                {% if rep_messages %}
+                {% for rep_message in rep_messages %}
+                <p style="color: red;">{{rep_message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <button type="submit">Add</button>
+            </div>
+
+        </form>
+    </div>
 </body>
 
 </html>

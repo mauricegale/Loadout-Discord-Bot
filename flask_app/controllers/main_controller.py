@@ -12,7 +12,7 @@ def home():
         form_progress = {
             **session['data']
         }
-
+        del session['data']
     return render_template("form.html", weapons=weapons, ammo=ammo, muzzles=muzzles,
                            barrels=barrels, lasers=lasers, magazines=magazines, optics=optics,
                            rear_grips=rear_grips, stocks=stocks, underbarrels=underbarrels, form_progress=form_progress)
@@ -38,7 +38,8 @@ def create_loadout():
         session['data'] = request.form
         return redirect('/')
 
-    del session['data']
+    if 'data' in session:
+        del session['data']
     gun = Gun.add_gun(gun_data)
 
     loadout_data = {

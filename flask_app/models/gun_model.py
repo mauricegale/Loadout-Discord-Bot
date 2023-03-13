@@ -43,15 +43,15 @@ class Gun:
                 nulls += 1
 
         if data['gun_type'] == '':
-            flash('Must enter the type of gun', 'report')
+            flash('Must enter the type of gun', 'type')
             is_valid = False
 
         if data['gun_name'] == '':
-            flash('Must enter the name of gun', 'report')
+            flash('Must enter the name of gun', 'name_of_gun')
             is_valid = False
 
         if nulls < 4:
-            flash('Must enter at most 5 attachments', 'report')
+            flash('Must enter at most 5 attachments', 'attachments')
             is_valid = False
 
         return is_valid
