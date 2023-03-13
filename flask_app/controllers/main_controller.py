@@ -7,9 +7,15 @@ from flask_app.weapon_data.weapons import weapons, ammo, muzzles, barrels, laser
 
 @app.route("/")
 def home():
+    form_progress = {}
+    if "data" in session:
+        form_progress = {
+            **session['data']
+        }
+
     return render_template("form.html", weapons=weapons, ammo=ammo, muzzles=muzzles,
                            barrels=barrels, lasers=lasers, magazines=magazines, optics=optics,
-                           rear_grips=rear_grips, stocks=stocks, underbarrels=underbarrels)
+                           rear_grips=rear_grips, stocks=stocks, underbarrels=underbarrels, form_progress=form_progress)
 
 
 @app.route("/add_loadout", methods=['POST'])
@@ -28,12 +34,11 @@ def create_loadout():
         'gun_type': request.form['gun_type']
     }
 
-    if not Gun.validate_info(gun_data):
+    if not Gun.validate_info(gun_data) or not Loadout.validate_info(request.form):
+        session['data'] = request.form
         return redirect('/')
 
-    if not Loadout.validate_info(request.form):
-        return redirect('/')
-
+    del session['data']
     gun = Gun.add_gun(gun_data)
 
     loadout_data = {

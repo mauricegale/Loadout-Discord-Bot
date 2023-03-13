@@ -22,10 +22,11 @@
     {% endwith %}
     <form action="/add_loadout" method="post">
         <label for='creator'>Creator:</label>
-        <input type='text' name='creator'><br>
+        <input value="{{form_progress.creator}}" type='text' name='creator'><br>
 
         <label for='gun_type'>Gun Type:</label>
-        <select name="gun_type">
+        <select name="gun_type">\
+            <option value="{{form_progress.gun_type}}">{{form_progress.gun_type}}</option>
             <option value="AR">AR</option>
             <option value="SMG">SMG</option>
             <option value="LMG">LMG</option>
@@ -38,13 +39,14 @@
 
         <label for='game_mode'>Made For:</label>
         <select name="game_mode">
-            <option value="DMZ">DMZ</option>
+            <option value="{{form_progress.game_mode}}">{{form_progress.game_mode}}</option>
             <option value="multiplayer">Multiplayer</option>
+            <option value="DMZ">DMZ</option>
             <option value="warzone">Warzone</option>
         </select>
 
         <label for='gun_name'>Gun:</label>
-        <input name="gun_name" list="gun_brow">
+        <input value="{{form_progress.gun_name}}" name="gun_name" list="gun_brow">
         <datalist id="gun_brow">
             {% for one_weapon in weapons %}
             <option value="{{one_weapon}}">{{one_weapon}}</option>
@@ -52,7 +54,7 @@
         </datalist>
 
         <label for='ammo'>Ammo:</label>
-        <input name="ammo" list="ammo_brow">
+        <input value="{{form_progress.ammo}}" name="ammo" list="ammo_brow">
         <datalist id="ammo_brow">
             {% for one_ammo in ammo %}
             <option value="{{one_ammo}}">{{one_ammo}}</option>
@@ -60,7 +62,7 @@
         </datalist>
 
         <label for='stock'>Stock:</label>
-        <input name="stock" list="stock_brow">
+        <input value="{{form_progress.stock}}" name="stock" list="stock_brow">
         <datalist id="stock_brow">
             {% for one_stock in stocks %}
             <option value="{{one_stock}}">{{one_stock}}</option>
@@ -68,7 +70,7 @@
         </datalist>
 
         <label for='barrel'>Barrel:</label>
-        <input name="barrel" list="barrel_brow">
+        <input value="{{form_progress.barrel}}" name="barrel" list="barrel_brow">
         <datalist id="barrel_brow">
             {% for one_barrel in barrels %}
             <option value="{{one_barrel}}">{{one_barrel}}</option>
@@ -76,7 +78,7 @@
         </datalist>
 
         <label for='laser'>laser:</label>
-        <input name="laser" list="laser_brow">
+        <input value="{{form_progress.laser}}" name="laser" list="laser_brow">
         <datalist id="laser_brow">
             {% for one_laser in lasers %}
             <option value="{{one_laser}}">{{one_laser}}</option>
@@ -84,7 +86,7 @@
         </datalist>
 
         <label for='magazine'>Magazine:</label>
-        <input name="magazine" list="mag_brow">
+        <input value="{{form_progress.magazine}}" name="magazine" list="mag_brow">
         <datalist id="mag_brow">
             {% for one_magazine in magazines %}
             <option value="{{one_magazine}}">{{one_magazine}}</option>
@@ -92,7 +94,7 @@
         </datalist>
 
         <label for='optic'>optic:</label>
-        <input name="optic" list="optic_brow">
+        <input value="{{form_progress.optic}}" name="optic" list="optic_brow">
         <datalist id="optic_brow">
             {% for one_optic in optics %}
             <option value="{{one_optic}}">{{one_optic}}</option>
@@ -100,7 +102,7 @@
         </datalist>
 
         <label for='rear_grip'>Rear Grip:</label>
-        <input name="rear_grip" list="rear_grip_brow">
+        <input value="{{form_progress.rear_grip}}" name="rear_grip" list="rear_grip_brow">
         <datalist id="rear_grip_brow">
             {% for one_rear_grip in rear_grips %}
             <option value="{{one_rear_grip}}">{{one_rear_grip}}</option>
@@ -108,7 +110,7 @@
         </datalist>
 
         <label for='muzzle'>Muzzle:</label>
-        <input name="muzzle" list="muzzle_brow">
+        <input value="{{form_progress.muzzle}}" name="muzzle" list="muzzle_brow">
         <datalist id="muzzle_brow">
             {% for one_muzzle in muzzles %}
             <option value="{{one_muzzle}}">{{one_muzzle}}</option>
@@ -116,7 +118,7 @@
         </datalist>
 
         <label for='underbarrel'>Underbarrel:</label>
-        <input name="underbarrel" list="underbarrel_brow">
+        <input value="{{form_progress.underbarrel}}" name="underbarrel" list="underbarrel_brow">
         <datalist id="underbarrel_brow">
             {% for one_underbarrel in underbarrels %}
             <option value="{{one_underbarrel}}">{{one_underbarrel}}</option>

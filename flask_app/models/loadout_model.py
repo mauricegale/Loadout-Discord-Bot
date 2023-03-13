@@ -35,3 +35,30 @@ class Loadout:
         """
 
         return connectToMySQL(db).query_db(query, data)
+
+    # @classmethod
+    # def add_multiple_loadouts(cls, creator, game_mode):
+    #     loadout_data = {
+    #         "gun_id": attachment_dict[gun_id],
+    #         "creator": creator,
+    #         "game_mode": game_mode
+    #     }
+
+    #     file = open("flask_app/weapon_data/text_files/loadouts.txt", "r")
+    #     temp = file.readlines()
+
+    #     loadouts = [line.strip() for line in temp]
+    #     count = 0
+    #     one_dict = {}
+
+    #     for i in range(len(loadouts)):
+    #         if loadouts[i] == "":
+    #             one_dict.clear()
+    #             count = 0
+    #             continue
+    #         if count % 2 == 0:
+    #             one_dict[loadouts[i]] = ""
+    #         else:
+    #             one_dict[loadouts[i - 1]] = loadouts[i]
+    #         count += 1
+    #     print(loadout_dicts)

@@ -1,7 +1,8 @@
 6.5mm High Velocity
 6.5mm Hollowpoint
 6.5mm Frangible
-6.5mm Armor Piercing6.5mm Overpressured +P
+6.5mm Armor Piercing
+6.5mm Overpressured +P
 6.5mm Incendiary
 5.56 Armor Piercing
 5.56 Overpressured +P
