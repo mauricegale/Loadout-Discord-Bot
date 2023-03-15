@@ -78,7 +78,7 @@
                     <label for='ammo'>Ammo:</label>
                     <input value="{{form_progress.ammo}}" name="ammo" list="ammo_brow">
                     <datalist id="ammo_brow">
-                        {% for one_ammo in ammo %}
+                        {% for one_ammo in attachments.ammo %}
                         <option value="{{one_ammo}}">{{one_ammo}}</option>
                         {% endfor %}
                     </datalist>
@@ -86,7 +86,7 @@
                     <label for='stock'>Stock:</label>
                     <input value="{{form_progress.stock}}" name="stock" list="stock_brow">
                     <datalist id="stock_brow">
-                        {% for one_stock in stocks %}
+                        {% for one_stock in attachments.stocks %}
                         <option value="{{one_stock}}">{{one_stock}}</option>
                         {% endfor %}
                     </datalist>
@@ -94,7 +94,7 @@
                     <label for='barrel'>Barrel:</label>
                     <input value="{{form_progress.barrel}}" name="barrel" list="barrel_brow">
                     <datalist id="barrel_brow">
-                        {% for one_barrel in barrels %}
+                        {% for one_barrel in attachments.barrels %}
                         <option value="{{one_barrel}}">{{one_barrel}}</option>
                         {% endfor %}
                     </datalist>
@@ -102,7 +102,7 @@
                     <label for='laser'>laser:</label>
                     <input value="{{form_progress.laser}}" name="laser" list="laser_brow">
                     <datalist id="laser_brow">
-                        {% for one_laser in lasers %}
+                        {% for one_laser in attachments.lasers %}
                         <option value="{{one_laser}}">{{one_laser}}</option>
                         {% endfor %}
                     </datalist>
@@ -110,7 +110,7 @@
                     <label for='magazine'>Magazine:</label>
                     <input value="{{form_progress.magazine}}" name="magazine" list="mag_brow">
                     <datalist id="mag_brow">
-                        {% for one_magazine in magazines %}
+                        {% for one_magazine in attachments.magazines %}
                         <option value="{{one_magazine}}">{{one_magazine}}</option>
                         {% endfor %}
                     </datalist>
@@ -120,7 +120,7 @@
                     <label for='optic'>optic:</label>
                     <input value="{{form_progress.optic}}" name="optic" list="optic_brow">
                     <datalist id="optic_brow">
-                        {% for one_optic in optics %}
+                        {% for one_optic in attachments.optics %}
                         <option value="{{one_optic}}">{{one_optic}}</option>
                         {% endfor %}
                     </datalist>
@@ -128,7 +128,7 @@
                     <label for='rear_grip'>Rear Grip:</label>
                     <input value="{{form_progress.rear_grip}}" name="rear_grip" list="rear_grip_brow">
                     <datalist id="rear_grip_brow">
-                        {% for one_rear_grip in rear_grips %}
+                        {% for one_rear_grip in attachments.rear_grips %}
                         <option value="{{one_rear_grip}}">{{one_rear_grip}}</option>
                         {% endfor %}
                     </datalist>
@@ -136,7 +136,7 @@
                     <label for='muzzle'>Muzzle:</label>
                     <input value="{{form_progress.muzzle}}" name="muzzle" list="muzzle_brow">
                     <datalist id="muzzle_brow">
-                        {% for one_muzzle in muzzles %}
+                        {% for one_muzzle in attachments.muzzles %}
                         <option value="{{one_muzzle}}">{{one_muzzle}}</option>
                         {% endfor %}
                     </datalist>
@@ -144,7 +144,7 @@
                     <label for='underbarrel'>Underbarrel:</label>
                     <input value="{{form_progress.underbarrel}}" name="underbarrel" list="underbarrel_brow">
                     <datalist id="underbarrel_brow">
-                        {% for one_underbarrel in underbarrels %}
+                        {% for one_underbarrel in attachments.underbarrels %}
                         <option value="{{one_underbarrel}}">{{one_underbarrel}}</option>
                         {% endfor %}
                     </datalist><br>

@@ -56,3 +56,15 @@ file = open("flask_app/weapon_data/text_files/underbarrel.txt", "r")
 temp = file.readlines()
 
 underbarrels = [line.strip() for line in temp]
+
+attachments = {
+    "barrels": barrels,
+    "muzzles": muzzles,
+    "rear_grips": rear_grips,
+    "underbarrels": underbarrels,
+    "optics": optics,
+    "ammo": ammo,
+    "magazines": magazines,
+    "stocks": stocks,
+    "lasers": lasers
+}

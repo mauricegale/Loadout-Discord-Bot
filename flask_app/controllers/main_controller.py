@@ -1,8 +1,8 @@
 from flask_app import app
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session
 from flask_app.models.loadout_model import Loadout
 from flask_app.models.gun_model import Gun
-from flask_app.weapon_data.weapons import weapons, ammo, muzzles, barrels, lasers, magazines, optics, rear_grips, stocks, underbarrels
+from flask_app.weapon_data.weapons import weapons, attachments
 
 
 @app.route("/")
@@ -13,9 +13,7 @@ def home():
             **session['data']
         }
         del session['data']
-    return render_template("form.html", weapons=weapons, ammo=ammo, muzzles=muzzles,
-                           barrels=barrels, lasers=lasers, magazines=magazines, optics=optics,
-                           rear_grips=rear_grips, stocks=stocks, underbarrels=underbarrels, form_progress=form_progress)
+    return render_template("form.html", weapons=weapons, attachments=attachments, form_progress=form_progress)
 
 
 @app.route("/add_loadout", methods=['POST'])
