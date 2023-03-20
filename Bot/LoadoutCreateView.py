@@ -18,8 +18,8 @@ class LoadoutCreateView(View):
 
     @discord.ui.button(label="Create Loadout (3/3)", row=2, style=discord.ButtonStyle.primary)
     async def loadout3_button_callback(self, interaction, button):
-        modal2 = LoadoutCreateModalPage3()
-        await interaction.response.send_modal(modal2)
+        modal3= LoadoutCreateModalPage3()
+        await interaction.response.send_modal(modal3)
 
     @discord.ui.button(label="Submit", row=3, style=discord.ButtonStyle.primary)
     async def submit_button_callback(self, interaction, button):
