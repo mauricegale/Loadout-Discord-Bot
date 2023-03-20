@@ -1,7 +1,14 @@
 import discord
 
 
-class LoadoutCreateModalPage2(discord.ui.Modal, title="Enter Loadout Information"):
+class LoadoutCreateModalPage2(discord.ui.Modal, title="Create Loadout Page (2/3)"):
+    barrel_type = discord.ui.TextInput(
+        style=discord.TextStyle.short,
+        label="Barrel",
+        required=False,
+        placeholder="Enter Barrel Type"
+    )
+
     laser_type = discord.ui.TextInput(
         style=discord.TextStyle.short,
         label="Laser",
@@ -30,23 +37,5 @@ class LoadoutCreateModalPage2(discord.ui.Modal, title="Enter Loadout Information
         placeholder="Enter Rear Grip"
     )
 
-    muzzle_type = discord.ui.TextInput(
-        style=discord.TextStyle.short,
-        label="Muzzle",
-        required=False,
-        placeholder="Enter Muzzle Type"
-    )
-
-    # underbarrel_type = discord.ui.TextInput(
-    #     style=discord.TextStyle.short,
-    #     label="Underbarrel",
-    #     required=False,
-    #     placeholder="Enter UnderBarrel Type"
-    # )
-    #
-    # comb_type = discord.ui.TextInput(
-    #     style=discord.TextStyle.short,
-    #     label="Comb",
-    #     required=False,
-    #     placeholder="Enter Comb Type"
-    # )
+    async def on_submit(self, interaction):
+        await interaction.response.defer(thinking=False)
