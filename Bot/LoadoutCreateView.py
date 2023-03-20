@@ -11,5 +11,5 @@ class LoadoutCreateView(View):
     #     self.message = await interaction.response.send_modal(LoadoutCreateModal(title="Create Loadout"))
     @discord.ui.button(label="Create Loadout", row=0, style=discord.ButtonStyle.primary)
     async def button_callback(self, interaction, button):
-        modal = LoadoutCreateModalPage1(title="Create Loadout Page(1/3)")
+        modal = LoadoutCreateModalPage1(self)
         await interaction.response.send_modal(modal)
